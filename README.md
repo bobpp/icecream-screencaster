@@ -6,6 +6,8 @@
 
 SEE: https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
 
+And Avaliable "ファイルのURLアクセスを許可する" on Chrome Extension Administration page (chrome://extensions/)
+
 ### 2. Setup Perl by plenv / Ruby by rbenv
 
 SEE: https://github.com/tokuhirom/plenv
