@@ -14,7 +14,25 @@ SEE: https://github.com/tokuhirom/plenv
 
 SEE: https://github.com/sstephenson/rbenv
 
-### 3. Setup Carton / Bundle
+or if you use Homebrew
+
+```bash
+$ brew install plenv perl-build rbenv ruby-build
+```
+
+### 3. Build Perl / Ruby
+
+```bash
+$ rbenv install ...
+$ rbenv global ...
+$ rbenv rehash
+
+$ plenv install ...
+$ plenv global ...
+$ plenv rehash
+```
+
+### 4. Setup Carton / Bundle
 
 ```bash
 $ plenv install-cpanm
@@ -25,7 +43,7 @@ $ gem install bundle
 $ rbenv rehash
 ```
 
-### 4. Require Module install by Carton / Bundle
+### 5. Require Module install by Carton / Bundle
 
 ```bash
 $ cd /path/to/this/repos
@@ -33,13 +51,19 @@ $ carton install
 $ bundle install --path vendor/bundle
 ```
 
-### 5. Start Guard-LiveReload
+### 6. Create htdocs directory
+
+```bash
+$ mkdir htdocs
+```
+
+### 7. Start Guard-LiveReload
 
 ```bash
 $ bundle exec guard
 ```
 
-### 6. Make ScreenCast html
+### 8. Make ScreenCast html
 
 ```bash
 $ carton exec perl screen-caster.pl <TWEET-URL>
