@@ -51,19 +51,13 @@ $ carton install
 $ bundle install --path vendor/bundle
 ```
 
-### 6. Create htdocs directory
-
-```bash
-$ mkdir htdocs
-```
-
-### 7. Start Guard-LiveReload
+### 6. Start Guard-LiveReload
 
 ```bash
 $ bundle exec guard
 ```
 
-### 8. Make ScreenCast html
+### 7. Make ScreenCast html
 
 ```bash
 $ carton exec perl screen-caster.pl <TWEET-URL>
