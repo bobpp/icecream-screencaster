@@ -2,5 +2,5 @@
 # More info at https://github.com/guard/guard#readme
 
 guard 'livereload' do
-  watch(%r{htdocs/screen.html$})
+  watch(%r{htdocs/.+\.(css|js|html)})
 end
