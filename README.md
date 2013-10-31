@@ -60,7 +60,7 @@ $ bundle exec guard
 ### 7. Make ScreenCast html
 
 ```bash
-$ carton exec perl screen-caster.pl <TWEET-URL>
+$ carton exec perl screen-caster.pl <TWEET-ID>
 ```
 
 Auto reload screen.html
