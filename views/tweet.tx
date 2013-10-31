@@ -1,2 +1,21 @@
-<: $tweet_html | mark_raw :>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<!DOCTYPE html>
+<html lang="ja-JP">
+<head>
+	<meta charset="UTF-8">
+	<title>Icecream | bobpp.jp</title>
+	<link rel="stylesheet" href="css/style.css" media="all">
+</head>
+<body>
+	<div id="view-box">
+		<h1>あいすり〜む Volume.3</h1>
+		<div id="tweet">
+			<: $tweet_html | mark_raw :>
+			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</div>
+		<p id="hash-tag">
+			番組への投稿は #prfm_icecream まで！
+		</p>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+* { color: #FFF; }
+
+html {
+	background-color: #000;
+}
+
+#view-box {
+	margin: 10px auto;
+	width: 640px;
+	height: 360px;
+	border: 1px solid gray;
+	position: relative;
+}
+
+h1 {
+	font-size: small;
+	margin: 5px 10px;
+	color: #FFF;
+}
+
+.twitter-tweet {
+	display: none;
+}
+
+#hash-tag {
+	margin: 5px;
+	padding: 0;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	font-size: large;
+}
+
