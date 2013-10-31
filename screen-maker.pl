@@ -21,7 +21,7 @@ if ($twitter_api_response->is_success) {
 		path => 'views',
 	);
 	my $path = Path::Tiny->new('htdocs/screen.html');
-	$path->spew($tx->render('tweet.tx', { tweet_html => $result->{html} }));
+	$path->spew_utf8($tx->render('tweet.tx', { tweet_html => $result->{html} }));
 }
 else {
 	print Dumper($twitter_api_response);
