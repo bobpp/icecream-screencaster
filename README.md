@@ -51,13 +51,19 @@ $ carton install
 $ bundle install --path vendor/bundle
 ```
 
-### 6. Start Guard-LiveReload
+### 6. Setup Commentators DB
+
+```bash
+$ cat sql/sqlite.sql | sqlite3 commentators.db
+```
+
+### 7. Start Guard-LiveReload
 
 ```bash
 $ bundle exec guard
 ```
 
-### 7. Make ScreenCast html
+### 8. Make ScreenCast html
 
 ```bash
 $ carton exec perl screen-caster.pl <TWEET-ID>
