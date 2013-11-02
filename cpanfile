@@ -4,3 +4,5 @@ requires 'Furl';
 requires 'Path::Tiny';
 requires 'URI';
 requires 'IO::Socket::SSL';
+requires 'DBI';
+requires 'DBD::SQLite';
