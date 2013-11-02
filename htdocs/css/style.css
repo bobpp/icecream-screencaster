@@ -22,6 +22,30 @@ h1 {
 	display: none;
 }
 
+h2 {
+	font-size: large;
+	margin: 10px 10px;
+}
+
+#commentators {
+	width: 600px;
+	margin: 10px auto;
+	padding: 0;
+	list-style: none;
+}
+
+.commentator {
+	float: left;
+	text-align: center;
+	width: 150px;
+	padding: 10px 0;
+}
+
+.twitter-icon {
+	width: 64px;
+	height: 64px;
+}
+
 #hash-tag {
 	margin: 5px;
 	padding: 0;
