@@ -33,6 +33,8 @@ my $commentator_twitter_ids = +{
 	5 => [ qw/Notridfcchi BoBpp/ ],
 };
 
+my $special_modes = [qw/DEFAULT TITLE HASH-TAG TEASER/];
+
 my $stash = +{
 	theme_title => $theme_titles->{ $theme },
 };
@@ -41,6 +43,7 @@ my($url) = @ARGV;
 
 my $url_scheme = URI->new($url)->scheme || '';
 if ($url_scheme !~ /^http/) {
+	die "special_mode = $url is not allowed!\nallow: @$special_modes\n" unless grep { $_ eq $url } @$special_modes;
 	my $commentators = [ map { +{ twitter_id => $_ } } @{ $commentator_twitter_ids->{ $theme } } ];
 	for (@$commentators) {
 		my $c = $dbh->selectrow_hashref(
