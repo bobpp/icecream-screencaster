@@ -1,0 +1,8 @@
+/vendor
+/local
+/.bundle
+.perl-version
+.ruby-version
+
+/htdocs/screen.html
+/*.db

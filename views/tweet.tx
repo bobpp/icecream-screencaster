@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+<head>
+	<meta charset="UTF-8">
+	<title>Icecream | bobpp.jp</title>
+	<link rel="stylesheet" href="css/style.css" media="all">
+</head>
+<body>
+	<div id="view-box">
+		<h1>あいすり〜む Volume.3 - <: $theme_title :></h1>
+:		if $special_mode {
+:			if $special_mode == 'DEFAULT' {
+				<h2>コメンテーター</h2>
+				<ul id="commentators">
+:					for $commentators -> $c {
+						<li class="commentator">
+							<img src="<: $c.icon_url :>" alt="<: $c.twitter_id :>" class='twitter-icon'><br>
+							@<: $c.twitter_id :>
+						</li>
+:					}
+				</ul>
+:			} elsif $special_mode == 'TITLE' {
+				<h2 class="themes">今日のテーマ</h2>
+				<ol class="themes">
+					<li>LEVEL3 100% トーク！</li>
+					<li>2013年の Perfume について</li>
+					<li>ドームツアーの予想！</li>
+				</ol>
+:			} elsif $special_mode == 'HASH-TAG' {
+				<p class="hash-tag">
+					番組への感想などは #prfm_icecream まで！
+				</p>
+:			} elsif $special_mode == 'TEASER' {
+				<h2 class="teaser">21:00〜<br>放送開始!</h2>
+:			}
+:		} else {
+			<div id="tweet">
+				<: $tweet_html | mark_raw :>
+				<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+			</div>
+:		}
+		<p id="hash-tag">
+			番組への投稿は #prfm_icecream まで！
+		</p>
+	</div>
+</body>
+</html>
+
