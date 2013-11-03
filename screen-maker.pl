@@ -33,40 +33,43 @@ my $commentator_twitter_ids = +{
 	5 => [ qw/Notridfcchi BoBpp/ ],
 };
 
-my $commentators = [ map { +{ twitter_id => $_ } } @{ $commentator_twitter_ids->{ $theme } } ];
-for (@$commentators) {
-	my $c = $dbh->selectrow_hashref(
-		'SELECT * FROM commentators WHERE twitter_id = ?',
-		undef,
-		$_->{twitter_id},
-	);
-
-	if ($c) {
-		$_->{icon_url} = $c->{icon_url};
-	}
-	else {
-		my $res = $ua->request(
-			method => 'GET',
-			url => sprintf('http://furyu.nazo.cc/twicon/%s/original', $_->{twitter_id}),
-			max_redirects => 0,
-		);
-		$_->{icon_url} = $res->headers->header('location');
-
-		$dbh->do(
-			'INSERT INTO commentators (twitter_id, icon_url, created_at, updated_at) VALUES (?, ?, ?, ?)',
-			undef,
-			$_->{twitter_id}, $_->{icon_url}, time, time,
-		);
-	}
-}
-
 my $stash = +{
 	theme_title => $theme_titles->{ $theme },
-	commentators => $commentators,
 };
 
 my($url) = @ARGV;
-if ($url eq 'DEFAULT') {
+
+my $url_scheme = URI->new($url)->scheme || '';
+if ($url_scheme !~ /^http/) {
+	my $commentators = [ map { +{ twitter_id => $_ } } @{ $commentator_twitter_ids->{ $theme } } ];
+	for (@$commentators) {
+		my $c = $dbh->selectrow_hashref(
+			'SELECT * FROM commentators WHERE twitter_id = ?',
+			undef,
+			$_->{twitter_id},
+		);
+
+		if ($c) {
+			$_->{icon_url} = $c->{icon_url};
+		}
+		else {
+			my $res = $ua->request(
+				method => 'GET',
+				url => sprintf('http://furyu.nazo.cc/twicon/%s/original', $_->{twitter_id}),
+				max_redirects => 0,
+			);
+			$_->{icon_url} = $res->headers->header('location');
+
+			$dbh->do(
+				'INSERT INTO commentators (twitter_id, icon_url, created_at, updated_at) VALUES (?, ?, ?, ?)',
+				undef,
+				$_->{twitter_id}, $_->{icon_url}, time, time,
+			);
+		}
+	}
+
+	$stash->{special_mode} = $url;
+	$stash->{commentators} = $commentators;
 }
 else {
 	my $uri = URI->new('https://api.twitter.com/1/statuses/oembed.json');

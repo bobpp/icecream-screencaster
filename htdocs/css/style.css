@@ -27,6 +27,25 @@ h2 {
 	margin: 10px 10px;
 }
 
+h2.teaser {
+	margin: 55px auto; /* Contents box height = 310 px */
+	line-height: 100px;
+	font-size: 80px;
+	text-align: center;
+}
+
+p.hash-tag {
+	margin: 85px auto;
+	line-height: 70px;
+	font-size: 55px;
+	text-align: center;
+}
+
+ol.themes {
+	margin: 0 0 0 30px;
+	font-size: 35px;
+}
+
 #commentators {
 	width: 600px;
 	margin: 10px auto;
