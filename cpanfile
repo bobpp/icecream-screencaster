@@ -6,3 +6,4 @@ requires 'URI';
 requires 'IO::Socket::SSL';
 requires 'DBI';
 requires 'DBD::SQLite';
+requires 'YAML';

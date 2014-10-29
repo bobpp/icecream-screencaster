@@ -9,34 +9,24 @@ use URI;
 use Data::Dumper;
 use Getopt::Long;
 use DBI;
+use YAML;
 
-GetOptions('theme=i' => \my $theme);
+GetOptions(
+	'config=s' => \my $config_file_path,
+	'theme=i' => \my $theme,
+);
+
+my $config = YAML::LoadFile($config_file_path) || die;
+my $current_theme_config = $config->{themes}[ $theme ];
 
 my $dbh = DBI->connect('dbi:SQLite:dbname=commentators.db', '', '');
 my $ua = Furl->new(timeout => 3);
 
-my $theme_titles = +{
-	0 => 'Opening',
-	1 => 'LEVEL3 100% トーク!',
-	2 => '2013年の Perfume について',
-	3 => 'ドームツアーの予想！',
-	4 => 'Ending',
-	5 => '2部',
-};
-
-my $commentator_twitter_ids = +{
-	0 => [ qw/Notridfcchi/ ],
-	1 => [ qw/poronnotei koeda11 dokuroflower/ ],
-	2 => [ qw/bakushin2300 pittanko_pta jaqwatdas toshi110 santgva kokubucamera BoBpp/ ],
-	3 => [ qw/hcaaabok buchibuchi nanno2009/ ],
-	4 => [ qw/Notridfcchi/ ],
-	5 => [ qw/Notridfcchi BoBpp/ ],
-};
-
-my $special_modes = [qw/DEFAULT TITLE HASH-TAG TEASER/];
-
+my $special_modes = [qw/MEMBERS CONTENTS HASH-TAG TEASER/];
 my $stash = +{
-	theme_title => $theme_titles->{ $theme },
+	title => $config->{title},
+	theme_title => $current_theme_config->{title},
+	opening_themes => $config->{opening_themes},
 };
 
 my($url) = @ARGV;
@@ -44,7 +34,7 @@ my($url) = @ARGV;
 my $url_scheme = URI->new($url)->scheme || '';
 if ($url_scheme !~ /^http/) {
 	die "special_mode = $url is not allowed!\nallow: @$special_modes\n" unless grep { $_ eq $url } @$special_modes;
-	my $commentators = [ map { +{ twitter_id => $_ } } @{ $commentator_twitter_ids->{ $theme } } ];
+	my $commentators = [ map { +{ twitter_id => $_ } } @{ $current_theme_config->{commentators} } ];
 	for (@$commentators) {
 		my $c = $dbh->selectrow_hashref(
 			'SELECT * FROM commentators WHERE twitter_id = ?',

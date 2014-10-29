@@ -7,9 +7,9 @@
 </head>
 <body>
 	<div id="view-box">
-		<h1>あいすり〜む Volume.3 - <: $theme_title :></h1>
+		<h1><: $title :> - <: $theme_title :></h1>
 :		if $special_mode {
-:			if $special_mode == 'DEFAULT' {
+:			if $special_mode == 'MEMBERS' {
 				<h2>コメンテーター</h2>
 				<ul id="commentators">
 :					for $commentators -> $c {
@@ -19,12 +19,12 @@
 						</li>
 :					}
 				</ul>
-:			} elsif $special_mode == 'TITLE' {
+:			} elsif $special_mode == 'CONTENTS' {
 				<h2 class="themes">今日のテーマ</h2>
 				<ol class="themes">
-					<li>LEVEL3 100% トーク！</li>
-					<li>2013年の Perfume について</li>
-					<li>ドームツアーの予想！</li>
+:					for $opening_themes -> $t {
+						<li><: $t :></li>
+:					}
 				</ol>
 :			} elsif $special_mode == 'HASH-TAG' {
 				<p class="hash-tag">
